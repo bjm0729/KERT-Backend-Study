@@ -1,0 +1,31 @@
+<%- include('partials/header') %>
+
+<h2>글 목록</h2>
+
+<form action="/posts" method="GET">
+    <input
+        type="text"
+        name="keyword"
+        placeholder="제목 검색"
+    >
+    <button type="submit">검색</button>
+</form>
+
+<a href="/posts/new">글쓰기</a>
+
+<% if (posts.length === 0) { %>
+    <p>글이 없습니다</p>
+<% } else { %>
+    <ul>
+        <% for (const post of posts) { %>
+            <li>
+                <a href="/posts/<%= post.id %>">
+                    <%= post.title %>
+                </a>
+                (<%= post.author %>)
+            </li>
+        <% } %>
+    </ul>
+<% } %>
+
+<%- include('partials/footer') %>
